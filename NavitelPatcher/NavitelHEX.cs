@@ -37,15 +37,46 @@ namespace NavitelPatcher
             portList.Add(new NavitelCOMPort(9, com9));
             return portList;
         }   
+
+        public override string ToString()
+        {
+            return "COM" + this.PortNumber;
+        }
     }
 
-    struct NavitelCOMSpeed
+    class NavitelCOMSpeed
     {
+        public NavitelCOMSpeed(string name, byte[] signature)
+        {
+            this.Name = name;
+            this.Signature = signature;
+        }
+        public string Name { get; private set; }
+        public int OffsetInFile { get; set; }
+        public byte[] Signature { get; private set; }
+
         public static readonly byte[] speed2400 = { 0x96, 0x3E, 0xA0, 0xE3 };
         public static readonly byte[] speed4800 = { 0x4B, 0x3D, 0xA0, 0xE3 };
         public static readonly byte[] speed9600 = { 0x96, 0x3D, 0xA0, 0xE3 };
         public static readonly byte[] speed19200 = { 0x4B, 0x3C, 0xA0, 0xE3 };
         public static readonly byte[] speed38400 = { 0x96, 0x3C, 0xA0, 0xE3 };
         public static readonly byte[] speed57600 = { 0xE1, 0x3C, 0xA0, 0xE3 };
+
+        public static List<NavitelCOMSpeed> GetSpeedList()
+        {
+            List<NavitelCOMSpeed> speedList = new List<NavitelCOMSpeed>();
+            speedList.Add(new NavitelCOMSpeed("2400", speed2400));
+            speedList.Add(new NavitelCOMSpeed("4800", speed4800));
+            speedList.Add(new NavitelCOMSpeed("9600", speed9600));
+            speedList.Add(new NavitelCOMSpeed("19200", speed19200));
+            speedList.Add(new NavitelCOMSpeed("38400", speed38400));
+            speedList.Add(new NavitelCOMSpeed("57600", speed57600));
+            return speedList;
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }
