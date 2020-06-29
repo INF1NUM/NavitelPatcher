@@ -33,37 +33,39 @@
             this.labelFilePath = new System.Windows.Forms.Label();
             this.buttonBrowseInputFile = new System.Windows.Forms.Button();
             this.wizardPage2Analyse = new AeroWizard.WizardPage();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.labelProgress = new System.Windows.Forms.Label();
-            this.wizardPage3NewParameters = new AeroWizard.WizardPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBoxPort = new System.Windows.Forms.PictureBox();
             this.labelPort = new System.Windows.Forms.Label();
             this.pictureBoxSpeed = new System.Windows.Forms.PictureBox();
             this.labelSpeed = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.labelProgress = new System.Windows.Forms.Label();
+            this.wizardPage3NewParameters = new AeroWizard.WizardPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBoxNewPort = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.wizardControl1)).BeginInit();
             this.wizardPage1SelectEXE.SuspendLayout();
             this.wizardPage2Analyse.SuspendLayout();
-            this.wizardPage3NewParameters.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpeed)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.wizardPage3NewParameters.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // wizardControl1
             // 
             this.wizardControl1.BackColor = System.Drawing.Color.White;
             this.wizardControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wizardControl1.FinishButtonText = "Отмена";
             this.wizardControl1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wizardControl1.Location = new System.Drawing.Point(0, 0);
             this.wizardControl1.Name = "wizardControl1";
+            this.wizardControl1.NextButtonText = "Далее";
             this.wizardControl1.Pages.Add(this.wizardPage1SelectEXE);
             this.wizardControl1.Pages.Add(this.wizardPage2Analyse);
             this.wizardControl1.Pages.Add(this.wizardPage3NewParameters);
@@ -79,7 +81,7 @@
             this.wizardPage1SelectEXE.Controls.Add(this.labelFilePath);
             this.wizardPage1SelectEXE.Controls.Add(this.buttonBrowseInputFile);
             this.wizardPage1SelectEXE.Name = "wizardPage1SelectEXE";
-            this.wizardPage1SelectEXE.Size = new System.Drawing.Size(642, 296);
+            this.wizardPage1SelectEXE.Size = new System.Drawing.Size(642, 302);
             this.wizardPage1SelectEXE.TabIndex = 0;
             this.wizardPage1SelectEXE.Text = "Выберите исполняемый файл (*.exe) Navitel Navigator";
             // 
@@ -94,6 +96,7 @@
             // 
             // buttonBrowseInputFile
             // 
+            this.buttonBrowseInputFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonBrowseInputFile.Location = new System.Drawing.Point(564, 22);
             this.buttonBrowseInputFile.Name = "buttonBrowseInputFile";
             this.buttonBrowseInputFile.Size = new System.Drawing.Size(75, 23);
@@ -112,32 +115,6 @@
             this.wizardPage2Analyse.Size = new System.Drawing.Size(642, 296);
             this.wizardPage2Analyse.TabIndex = 1;
             this.wizardPage2Analyse.Text = "Анализ файла...";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(7, 42);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(629, 23);
-            this.progressBar1.TabIndex = 1;
-            // 
-            // labelProgress
-            // 
-            this.labelProgress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelProgress.Location = new System.Drawing.Point(3, 16);
-            this.labelProgress.Name = "labelProgress";
-            this.labelProgress.Size = new System.Drawing.Size(636, 23);
-            this.labelProgress.TabIndex = 0;
-            this.labelProgress.Text = "Анализ...";
-            this.labelProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // wizardPage3NewParameters
-            // 
-            this.wizardPage3NewParameters.Controls.Add(this.groupBox2);
-            this.wizardPage3NewParameters.Controls.Add(this.groupBox1);
-            this.wizardPage3NewParameters.Name = "wizardPage3NewParameters";
-            this.wizardPage3NewParameters.Size = new System.Drawing.Size(642, 296);
-            this.wizardPage3NewParameters.TabIndex = 2;
-            this.wizardPage3NewParameters.Text = "Выберите новые параметры";
             // 
             // tableLayoutPanel1
             // 
@@ -194,6 +171,63 @@
             this.labelSpeed.TabIndex = 3;
             this.labelSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(7, 42);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(629, 23);
+            this.progressBar1.TabIndex = 1;
+            // 
+            // labelProgress
+            // 
+            this.labelProgress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelProgress.Location = new System.Drawing.Point(3, 16);
+            this.labelProgress.Name = "labelProgress";
+            this.labelProgress.Size = new System.Drawing.Size(636, 23);
+            this.labelProgress.TabIndex = 0;
+            this.labelProgress.Text = "Анализ...";
+            this.labelProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // wizardPage3NewParameters
+            // 
+            this.wizardPage3NewParameters.Controls.Add(this.groupBox2);
+            this.wizardPage3NewParameters.Controls.Add(this.groupBox1);
+            this.wizardPage3NewParameters.Name = "wizardPage3NewParameters";
+            this.wizardPage3NewParameters.Size = new System.Drawing.Size(642, 302);
+            this.wizardPage3NewParameters.TabIndex = 2;
+            this.wizardPage3NewParameters.Text = "Выберите новые параметры";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBoxNewPort);
+            this.groupBox2.Location = new System.Drawing.Point(4, 60);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(625, 52);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Порт";
+            // 
+            // comboBoxNewPort
+            // 
+            this.comboBoxNewPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNewPort.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBoxNewPort.FormattingEnabled = true;
+            this.comboBoxNewPort.Location = new System.Drawing.Point(6, 22);
+            this.comboBoxNewPort.Name = "comboBoxNewPort";
+            this.comboBoxNewPort.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxNewPort.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(4, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(625, 49);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Директория сохранения";
+            // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -213,35 +247,6 @@
             this.button1.Text = "Обзор";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(625, 49);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Директория сохранения";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 5;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(4, 60);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(625, 52);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Порт";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,12 +258,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.wizardControl1)).EndInit();
             this.wizardPage1SelectEXE.ResumeLayout(false);
             this.wizardPage2Analyse.ResumeLayout(false);
-            this.wizardPage3NewParameters.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpeed)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.wizardPage3NewParameters.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -282,7 +287,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxNewPort;
     }
 }
 

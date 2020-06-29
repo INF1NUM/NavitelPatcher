@@ -103,6 +103,12 @@ namespace NavitelPatcher
         {
             if (wizardControl1.SelectedPage == wizardPage2Analyse)
                 bwAnalyser.RunWorkerAsync(labelFilePath.Text);
+            if (wizardControl1.SelectedPage == wizardPage3NewParameters)
+            {
+                var portlist = NavitelCOMPort.GetPortList();
+                var items = from port in portlist where port.PortNumber != foundedPort.PortNumber select port;
+                comboBoxNewPort.Items.Add("Не менять");
+            }
         }
     }
 }
