@@ -63,7 +63,7 @@ namespace NavitelPatcher
 
             var speedList = NavitelCOMSpeed.GetSpeedList();
             List<NavitelCOMSpeed> foundedSpeeds = new List<NavitelCOMSpeed>();
-            foreach(var speed in speedList)
+            foreach (var speed in speedList)
             {
                 progressCounter += 6;
                 bwAnalyser.ReportProgress(progressCounter, "Поиск сигнатуры скорости порта " + speed.Name + " бит/с...");
@@ -78,7 +78,7 @@ namespace NavitelPatcher
 
             e.Result = new AnalyseResult(foundedPorts, foundedSpeeds);
         }
-        
+
         private void BwAnalyser_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
@@ -133,20 +133,48 @@ namespace NavitelPatcher
 
             labelProgress.Text = "Готово";
             progressBar1.Value = 100;
+
+            if (foundedPort != null)
+            {
+                labelCurrentPort.Text = "Текущий порт: " + foundedPort.ToString();
+                var portlist = NavitelCOMPort.GetPortList();
+                var portItems = from port in portlist where port.PortNumber != foundedPort.PortNumber select port;
+                comboBoxNewPort.Items.Clear();
+                int portIndex = comboBoxNewPort.Items.Add("Не менять");
+                comboBoxNewPort.SelectedIndex = portIndex;
+                foreach (var item in portItems)
+                    comboBoxNewPort.Items.Add(item);
+            }
+            else
+                labelCurrentPort.Text = "Текущий порт: не найден.";
+
+            if (foundedSpeed != null)
+            {
+                labelCurrentSpeed.Text = "Текущая скорость: " + foundedSpeed.ToString();
+                var speedList = NavitelCOMSpeed.GetSpeedList();
+                var speedItems = from speed in speedList where speed.Name != foundedSpeed.Name select speed;
+                comboBoxNewSpeed.Items.Clear();
+                int speedIndex = comboBoxNewSpeed.Items.Add("Не менять");
+                comboBoxNewSpeed.SelectedIndex = speedIndex;
+                foreach (var item in speedItems)
+                    comboBoxNewSpeed.Items.Add(item);
+            }
+            else
+                labelCurrentSpeed.Text = "Текущая скорость: не найдена." + foundedSpeed.ToString();
         }
 
         private void buttonBrowseInputFile_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog inFileDialog = new OpenFileDialog())
             {
-                if(inFileDialog.ShowDialog() == DialogResult.OK)
+                if (inFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     labelFilePath.Text = inFileDialog.FileName;
                     wizardPage1SelectEXE.AllowNext = true;
                 }
             }
         }
-                
+
         private void wizardControl1_SelectedPageChanged(object sender, EventArgs e)
         {
             if (wizardControl1.SelectedPage == wizardPage2Analyse)
@@ -157,54 +185,50 @@ namespace NavitelPatcher
                 labelSpeed.Text = null;
                 bwAnalyser.RunWorkerAsync(labelFilePath.Text);
             }
-            if (wizardControl1.SelectedPage == wizardPage3NewParameters)
-            {
-                if (foundedPort != null)
-                {
-                    labelCurrentPort.Text = "Текущий порт: " + foundedPort.ToString();
-                    var portlist = NavitelCOMPort.GetPortList();
-                    var portItems = from port in portlist where port.PortNumber != foundedPort.PortNumber select port;
-                    comboBoxNewPort.Items.Clear();
-                    int portIndex = comboBoxNewPort.Items.Add("Не менять");
-                    comboBoxNewPort.SelectedIndex = portIndex;
-                    foreach (var item in portItems)
-                        comboBoxNewPort.Items.Add(item);
-                }
-                else
-                    labelCurrentPort.Text = "Текущий порт: не найден.";
-
-                if (foundedSpeed != null)
-                {
-                    labelCurrentSpeed.Text = "Текущая скорость: " + foundedSpeed.ToString();
-                    var speedList = NavitelCOMSpeed.GetSpeedList();
-                    var speedItems = from speed in speedList where speed.Name != foundedSpeed.Name select speed;
-                    comboBoxNewSpeed.Items.Clear();
-                    int speedIndex = comboBoxNewSpeed.Items.Add("Не менять");
-                    comboBoxNewSpeed.SelectedIndex = speedIndex;
-                    foreach (var item in speedItems)
-                        comboBoxNewSpeed.Items.Add(item);
-                }
-                else
-                    labelCurrentSpeed.Text = "Текущая скорость: не найдена." + foundedSpeed.ToString();
-            }
-        }
-
-        private void buttonSaveFile_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog sfDialog = new SaveFileDialog())
-            {
-                sfDialog.Filter = "исполняемые файлы (*.exe)|*.exe";
-                if (sfDialog.ShowDialog() == DialogResult.OK)
-                {
-                    labelSaveFilePath.Text = sfDialog.FileName;
-                    wizardPage3NewParameters.AllowNext = true;
-                }
-            }
         }
 
         private void wizardPage3NewParameters_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
-            //здесть нужно пропатчить и сохранить файл
+            if (checkBoxMakeBackup.Checked)
+            {
+                string newname = String.Format("{0}\\{1}_backup{2}", Path.GetDirectoryName(patcher.FilePath), Path.GetFileNameWithoutExtension(patcher.FilePath), Path.GetExtension(patcher.FilePath));
+                patcher.SaveFileAs(newname);
+            }
+            if (comboBoxNewPort.SelectedIndex > 0)
+            {
+                patcher.PatchFile(foundedPort.OffsetInFile, (comboBoxNewPort.SelectedItem as NavitelCOMPort).Signature);
+            }
+            if (comboBoxNewSpeed.SelectedIndex > 0)
+            {
+                patcher.PatchFile(foundedSpeed.OffsetInFile, (comboBoxNewSpeed.SelectedItem as NavitelCOMSpeed).Signature);
+            }
+
+            try
+            {
+                patcher.SaveFile();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Navitel Patcher", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comboBoxNewPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckSelection();
+        }
+
+        private void comboBoxNewSpeed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckSelection();
+        }
+
+        private void CheckSelection()
+        {
+            if(comboBoxNewPort.SelectedIndex > 0 || comboBoxNewSpeed.SelectedIndex > 0)
+                wizardPage3NewParameters.AllowNext = true;
+            else
+                wizardPage3NewParameters.AllowNext = false;
         }
     }
 }

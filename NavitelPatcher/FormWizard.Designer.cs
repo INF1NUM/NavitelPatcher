@@ -41,6 +41,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.labelProgress = new System.Windows.Forms.Label();
             this.wizardPage3NewParameters = new AeroWizard.WizardPage();
+            this.checkBoxMakeBackup = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxNewSpeed = new System.Windows.Forms.ComboBox();
@@ -48,9 +49,6 @@
             this.labelCurrentSpeed = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxNewPort = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelSaveFilePath = new System.Windows.Forms.Label();
-            this.buttonSaveFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.wizardControl1)).BeginInit();
             this.wizardPage1SelectEXE.SuspendLayout();
             this.wizardPage2Analyse.SuspendLayout();
@@ -61,7 +59,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // wizardControl1
@@ -197,13 +194,25 @@
             // 
             this.wizardPage3NewParameters.AllowBack = false;
             this.wizardPage3NewParameters.AllowNext = false;
+            this.wizardPage3NewParameters.Controls.Add(this.checkBoxMakeBackup);
             this.wizardPage3NewParameters.Controls.Add(this.tableLayoutPanel2);
-            this.wizardPage3NewParameters.Controls.Add(this.groupBox1);
             this.wizardPage3NewParameters.Name = "wizardPage3NewParameters";
             this.wizardPage3NewParameters.Size = new System.Drawing.Size(642, 296);
             this.wizardPage3NewParameters.TabIndex = 2;
             this.wizardPage3NewParameters.Text = "Выберите желаемые параметры";
             this.wizardPage3NewParameters.Commit += new System.EventHandler<AeroWizard.WizardPageConfirmEventArgs>(this.wizardPage3NewParameters_Commit);
+            // 
+            // checkBoxMakeBackup
+            // 
+            this.checkBoxMakeBackup.AutoSize = true;
+            this.checkBoxMakeBackup.Checked = true;
+            this.checkBoxMakeBackup.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxMakeBackup.Location = new System.Drawing.Point(3, 130);
+            this.checkBoxMakeBackup.Name = "checkBoxMakeBackup";
+            this.checkBoxMakeBackup.Size = new System.Drawing.Size(172, 19);
+            this.checkBoxMakeBackup.TabIndex = 8;
+            this.checkBoxMakeBackup.Text = "Создать резервную копию";
+            this.checkBoxMakeBackup.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -242,6 +251,7 @@
             this.comboBoxNewSpeed.Name = "comboBoxNewSpeed";
             this.comboBoxNewSpeed.Size = new System.Drawing.Size(295, 23);
             this.comboBoxNewSpeed.TabIndex = 6;
+            this.comboBoxNewSpeed.SelectedIndexChanged += new System.EventHandler(this.comboBoxNewSpeed_SelectedIndexChanged);
             // 
             // labelCurrentPort
             // 
@@ -281,37 +291,7 @@
             this.comboBoxNewPort.Name = "comboBoxNewPort";
             this.comboBoxNewPort.Size = new System.Drawing.Size(294, 23);
             this.comboBoxNewPort.TabIndex = 5;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.labelSaveFilePath);
-            this.groupBox1.Controls.Add(this.buttonSaveFile);
-            this.groupBox1.Location = new System.Drawing.Point(6, 138);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(630, 49);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Директория сохранения";
-            // 
-            // labelSaveFilePath
-            // 
-            this.labelSaveFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelSaveFilePath.Location = new System.Drawing.Point(6, 19);
-            this.labelSaveFilePath.Name = "labelSaveFilePath";
-            this.labelSaveFilePath.Size = new System.Drawing.Size(540, 23);
-            this.labelSaveFilePath.TabIndex = 3;
-            this.labelSaveFilePath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // buttonSaveFile
-            // 
-            this.buttonSaveFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSaveFile.Location = new System.Drawing.Point(552, 19);
-            this.buttonSaveFile.Name = "buttonSaveFile";
-            this.buttonSaveFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonSaveFile.TabIndex = 2;
-            this.buttonSaveFile.Text = "Обзор";
-            this.buttonSaveFile.UseVisualStyleBackColor = true;
-            this.buttonSaveFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
+            this.comboBoxNewPort.SelectedIndexChanged += new System.EventHandler(this.comboBoxNewPort_SelectedIndexChanged);
             // 
             // FormWizard
             // 
@@ -328,10 +308,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpeed)).EndInit();
             this.wizardPage3NewParameters.ResumeLayout(false);
+            this.wizardPage3NewParameters.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -351,9 +331,6 @@
         private System.Windows.Forms.Label labelPort;
         private System.Windows.Forms.PictureBox pictureBoxSpeed;
         private System.Windows.Forms.Label labelSpeed;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label labelSaveFilePath;
-        private System.Windows.Forms.Button buttonSaveFile;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBoxNewPort;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -361,6 +338,7 @@
         private System.Windows.Forms.ComboBox comboBoxNewSpeed;
         private System.Windows.Forms.Label labelCurrentPort;
         private System.Windows.Forms.Label labelCurrentSpeed;
+        private System.Windows.Forms.CheckBox checkBoxMakeBackup;
     }
 }
 
